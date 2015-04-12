@@ -1,0 +1,1 @@
+//Welcome to the README file of the frydge app
