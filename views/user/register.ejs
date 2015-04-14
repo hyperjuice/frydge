@@ -1,1 +1,27 @@
-register.ejs
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>register</title>
+</head>
+<body>
+	<div class="container">
+		<div>
+			<a href="/">home</a>
+		</br>
+			<a href="/register">register</a>
+		</br>
+			<a href="/search">search</a>
+		</br>	
+			<a href="/box">box</a>
+		</div>
+		<div>
+			<form method="POST" action="/signup">
+				<input type="text" name="email" placeholder="Email">
+				<input type="password" name="password" placeholder="Password">
+				<button>register</button>
+			</form>
+		</div>
+	</div>		
+</body>
+</html>

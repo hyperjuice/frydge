@@ -1,7 +1,9 @@
+
+
 "use strict";
 module.exports = {
   up: function(migration, DataTypes, done) {
-    migration.createTable("Recipes", {
+    migration.createTable("FavoriteRecipes", {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -28,6 +30,6 @@ module.exports = {
     }).done(done);
   },
   down: function(migration, DataTypes, done) {
-    migration.dropTable("Recipes").done(done);
+    migration.dropTable("FavoriteRecipes").done(done);
   }
 };

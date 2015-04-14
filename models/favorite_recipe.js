@@ -1,6 +1,6 @@
 "use strict";
 module.exports = function(sequelize, DataTypes) {
-  var Recipe = sequelize.define("Recipe", {
+  var FavoriteRecipe = sequelize.define("FavoriteRecipe", {
     yummly_id: DataTypes.STRING,
     recipe_name: DataTypes.STRING,
     user_id: DataTypes.INTEGER
@@ -11,5 +11,5 @@ module.exports = function(sequelize, DataTypes) {
       }
     }
   });
-  return Recipe;
+  return FavoriteRecipe;
 };

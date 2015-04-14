@@ -59,7 +59,7 @@ app.get('/signup', function(req,res){
 	res.render("user/signup");
 });
 
-app.get('/profile', function(req,res){
+app.get('/register', function(req,res){
 	req.currentUser().then(function(dbUser){
 		if (dbUser) {
 			db.FavoriteMovie.findAll({where: {UserId: dbUser.id}})
