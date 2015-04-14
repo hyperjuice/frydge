@@ -1,1 +1,20 @@
-login.ejs
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>login</title>
+</head>
+<body>
+		<div>
+			<a href="/">home</a>
+			<a href="/search">search</a>
+			<a href="/register">register</a>
+			<a href="/box">box</a>
+		</div>
+	<form method="POST" action="/login">
+		<input type="text" name="email" placeholder="email">
+		<input type="password" name="password" placeholder="password">
+		<button>login</button>
+	</form>
+</body>
+</html>

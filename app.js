@@ -48,7 +48,7 @@ app.get('/', function(req,res){
 app.get('/login', function(req,res){
 	req.currentUser().then(function(user){
 		if (user) {
-			res.redirect('/profile');
+			res.redirect('/box');
 		} else {
 			res.render("user/login");
 		}
@@ -80,7 +80,7 @@ app.post('/login', function(req,res){
 	  .then(function(dbUser){
 	  	if(dbUser) {
 	  		req.login(dbUser);
-	  		res.redirect('/profile');
+	  		res.redirect('/box');
 	  	} else {
 	  		res.redirect('/login');
 	  	}
