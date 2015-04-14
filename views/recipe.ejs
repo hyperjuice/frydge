@@ -1,1 +1,43 @@
-recipe.ejs
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>recipe</title>
+		<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+</head>
+<body>
+	<div class="container">
+		<div>
+			<a href="/">home</a>
+			</br>
+			<a href="/login">login</a>
+			</br>
+			<a href="/register">register</a>
+			</br>
+			<a href="/search">search</a>
+			</br>	
+			<a href="/box">box</a>
+		</div>
+		<div class="row">
+			<div class="col-xs-6">Image: <%= recipe.images %> </div>
+			<div class="col-xs-6">Name: <%= recipe.name %> </div>
+			<div class="col-xs-6">Thanks: <%= recipe.attribution %> </div>
+			<div class="col-xs-6">Ingredients: <%= recipe.ingredientLines %> </div>
+
+			<div class="col-xs-6">Source: <%= recipe.source %> </div>
+			<div class="col-xs-6">Time needed: <%= recipe.totalTimeInSeconds %> </div>
+		</div>
+		<div class="row">
+			<div class="col-xs-12">
+				<form method="POST" action="/favorites">
+					<input type="text" style="display: none;"
+					       value="<%= recipe.yumID%>" name="yumID">
+					<input type="number" name="rating">
+					<button>add to box</button>
+				</form>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

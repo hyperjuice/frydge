@@ -111,28 +111,28 @@ app.get('/search',function(req,res){
 	if (!recipeSearch) {
 		res.render("search", {recipes: [], noRecipies: true});
 	} else {
-		var url = "http://api.yummly.com/v1/api/recipes?_app_id=3e775ebe&_app_key=e7c79fa0efc5e9338bf35e68bd761b42&q="+recipeSearch+"&allowedAllergy[]=396^Dairy-Free&allowedAllergy[]=393^Gluten-Free&allowedAllergy[]=398^Seafood-Free&allowedAllergy[]=400^Soy-Free&allowedAllergy[]=392^Wheat-Free";
+		var url = "http://api.yummly.com/v1/api/recipes?_app_id=3e775ebe&_app_key=e7c79fa0efc5e9338bf35e68bd761b42&q="+recipeSearch+"&allowedDiet[]=389^Ovo vegetarian&allowedAllergy[]=393^Gluten-Free&allowedAllergy[]=398^Seafood-Free&allowedAllergy[]=400^Soy-Free&allowedAllergy[]=392^Wheat-Free&maxTotalTimeInSeconds=1800";
 
 		request(url, function(err, resp, body){
 			if (!err && resp.statusCode === 200) {
 				var jsonData = JSON.parse(body);
 				if (!jsonData.Search) {
-					res.render("search", {movies: [], noMovies: true});
+					res.render("search", {recipes: [], noRecipes: true});
 				}
-				res.render("search", {movies: jsonData.Search, noMovies: false});
+				res.render("search", {recipes: jsonData.Search, noRecipes: false});
 			}
 		});
 	}
 });
 
-app.get('/movie', function(req,res){
-	var imdbID = req.query.id;
+app.get('/recipe', function(req,res){
+	var yumID = req.query.id;
 
-	var url = 'http://www.omdbapi.com?i='+imdbID;
+	var url = 'http://www.yummly.com/recipe/'+yumID;
 	request(url, function(err, resp, body){
 		if (!err && resp.statusCode === 200) {
-			var movieData = JSON.parse(body);
-			res.render("movie", {movie: movieData});	
+			var recipeData = JSON.parse(body);
+			res.render("recipe", {recipe: recipeData});	
 		}
 	});
 });
