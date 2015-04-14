@@ -107,16 +107,14 @@ app.delete('/logout', function(req,res){
 
 
 app.get('/search',function(req,res){
-	var movieSearch = req.query.q3;
-	if (!movieSearch) {
-		res.render("search", {movies: [], noMovies: true});
+	var recipeSearch = req.query.lmk;
+	if (!recipeSearch) {
+		res.render("search", {recipes: [], noRecipies: true});
 	} else {
-		var url = "http://www.omdbapi.com?s="+movieSearch;
+		var url = "http://api.yummly.com/v1/api/recipes?_app_id=3e775ebe&_app_key=e7c79fa0efc5e9338bf35e68bd761b42&q="+recipeSearch+"&allowedAllergy[]=396^Dairy-Free&allowedAllergy[]=393^Gluten-Free&allowedAllergy[]=398^Seafood-Free&allowedAllergy[]=400^Soy-Free&allowedAllergy[]=392^Wheat-Free";
 
 		request(url, function(err, resp, body){
-			console.log("I'm in here 2");
 			if (!err && resp.statusCode === 200) {
-				console.log("I'm in here 3");
 				var jsonData = JSON.parse(body);
 				if (!jsonData.Search) {
 					res.render("search", {movies: [], noMovies: true});
