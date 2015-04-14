@@ -26,18 +26,17 @@
 			<div class="col-xs-6">Ingredients: <%= recipe.ingredientLines %> </div>
 
 			<div class="col-xs-6">Source: <%= recipe.source %> </div>
-			<div class="col-xs-6">Time needed: <%= recipe.totalTimeInSeconds %> </div>
+			<div class="col-xs-6">Time needed: <%= recipe.totalTime %> </div>
 		</div>
 		<div class="row">
 			<div class="col-xs-12">
 				<form method="POST" action="/favorites">
 					<input type="text" style="display: none;"
 					       value="<%= recipe.yumID%>" name="yumID">
-					<input type="number" name="rating">
 					<button>add to box</button>
 				</form>
 			</div>
 		</div>
 	</div>
 </body>
-</html>
+</html>	

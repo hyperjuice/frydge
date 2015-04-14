@@ -7,6 +7,7 @@ var session = require('express-session');
 var methodOverride = require('method-override');
 
 app.set("view engine", "ejs");	
+
 // This defines req.session
 app.use(session({
 	secret: "I'm very very secret thing",
@@ -16,7 +17,7 @@ app.use(session({
 	}
 }));
 
-app.use("/", function(req,res,next) {
+app.use("/", function(req, res, next) {
 	req.login = function(user) {
 		req.session.userId = user.id;
 	};
@@ -36,17 +37,17 @@ app.use("/", function(req,res,next) {
 
 app.use(methodOverride("_method"));
 
-app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(express.static('public'));
 
-app.get('/', function(req,res){
-	res.render("index", {title: "what's in your frydge?"});
+app.get('/', function(req, res) {
+	res.render("index", { title: "what's in your frydge?" });
 });
 
 
-app.get('/login', function(req,res){
-	req.currentUser().then(function(user){
+app.get('/login', function(req, res) {
+	req.currentUser().then(function(user) {
 		if (user) {
 			res.redirect('/box');
 		} else {
@@ -55,94 +56,93 @@ app.get('/login', function(req,res){
 	});
 });
 
-app.get('/register', function(req,res){
+app.get('/register', function(req, res) {
 	res.render("user/register");
 });
 
-app.get('/box', function(req,res){
+app.get('/box', function(req, res) {
 	req.currentUser().then(function(dbUser){
+		
 		if (dbUser) {
-			db.FavoriteRecipe.findAll({where: {UserId: dbUser.id}})
-			  .then(function(recipes){
-			  	console.log("\n\n\n\n\nHELLO", recipes);
-				res.render('user/box', {ejsUser: dbUser, yum: recipes});
-			});
+			db.FavoriteRecipe.findAll({ where: { UserId: dbUser.id } })
+				.then(function(recipes){
+					res.render('user/box', { ejsUser: dbUser, yum: recipes });
+				});
 		} else {
 			res.redirect('/login');
 		}
 	});
 });
 
-app.post('/login', function(req,res){
+app.post('/login', function(req, res) {
 	var email = req.body.email;
 	var password = req.body.password;
-	db.User.authenticate(email,password)
-	  .then(function(dbUser){
-	  	if(dbUser) {
-	  		req.login(dbUser);
-	  		res.redirect('/box');
-	  	} else {
-	  		res.redirect('/login');
-	  	}
-	  }); 
+	db.User.authenticate(email,password).then(function(dbUser) {
+		
+		if(dbUser) {
+			req.login(dbUser);
+			res.redirect('/box');
+		} else {
+			res.redirect('/login');
+		}
+	}); 
 });
 
-// GET /user/:id ---> req.params.id
-// GET /user -------> req.query.id
-// POST /user ------> req.body.id
-
-app.post('/register', function(req,res){
+app.post('/register', function(req, res) {
 	var email = req.body.email;
 	var password = req.body.password;
-	db.User.createSecure(email,password)
-	  .then(function(user){
-	  	res.redirect('/box');
-	  });
+
+	db.User.createSecure(email,password).then(function(user){
+		res.redirect('/box');
+	});
 });
 
-app.delete('/logout', function(req,res){
+app.delete('/logout', function(req, res) {
 	req.logout();
 	res.redirect('/login');
 });
 
 
-app.get('/search',function(req,res){
-	var recipeSearch = req.query.q;
-	if (!recipeSearch) {
-		res.render("search", {recipes: [], noRecipes: true});
-	} else {
+app.get('/search',function(req, res) {
+	var q = req.query.q;
 
-		
-		var url = "http://api.yummly.com/v1/api/recipes?_app_id=3e775ebe&_app_key=e7c79fa0efc5e9338bf35e68bd761b42&q="+recipeSearch+"&allowedDiet[]=389^Ovo vegetarian&allowedAllergy[]=393^Gluten-Free&allowedAllergy[]=398^Seafood-Free&allowedAllergy[]=400^Soy-Free&allowedAllergy[]=392^Wheat-Free&maxTotalTimeInSeconds=1800";
-		request(url, function(err, resp, body){
+	if (!q) {
+		res.render("search", { recipes: [], noRecipes: true });
+	} else {
+		var url = "http://api.yummly.com/v1/api/recipes?_app_id=3e775ebe&_app_key=e7c79fa0efc5e9338bf35e68bd761b42&q=" + q + "&allowedDiet[]=389^Ovo vegetarian&allowedAllergy[]=393^Gluten-Free&allowedAllergy[]=398^Seafood-Free&allowedAllergy[]=400^Soy-Free&allowedAllergy[]=392^Wheat-Free&maxTotalTimeInSeconds=1800";
+
+		request(url, function(err, resp, body) {
 			if (!err && resp.statusCode === 200) {
-				var jsonData = JSON.parse(body);
-				if (!jsonData.matches.length) {
-					res.render("search", {recipes: [], noRecipes: true});
+				var results = JSON.parse(body);
+
+				if (!results.matches.length) {
+					res.render("search", { recipes: [], noRecipes: true });
 				}
-				res.render("search", {recipes: jsonData.matches, noRecipes: false});
+
+				res.render("search", { recipes: results.matches, noRecipes: false });
 			}
 		});
 	}
 });
 
-app.get('/recipe', function(req,res){
-	var yumID = req.query.id;
+app.get('/recipes/:id', function(req, res) {
+	var yumID = req.params.id;
+	var url = 'http://api.yummly.com/v1/api/recipe/' + yumID + '?_app_id=3e775ebe&_app_key=e7c79fa0efc5e9338bf35e68bd761b42';
 
-	var url = 'http://www.yummly.com/recipe/'+yumID;
 	request(url, function(err, resp, body){
 		if (!err && resp.statusCode === 200) {
-			var recipeData = JSON.parse(body);
-			res.render("recipe", {recipe: recipeData});	
+			var recipe = JSON.parse(body);
+			res.render("recipe", { recipe: recipe });
 		}
 	});
 });
 
-app.post('/favorites', function(req,res){
+app.post('/favorites', function(req, res) {
 	var imdbID = req.body.imdbID;
 	var rating = req.body.rating;
 
-	req.currentUser().then(function(dbUser){
+	req.currentUser().then(function(dbUser) {
+
 		if (dbUser) {
 			dbUser.addToFavs(db,imdbID,rating).then(function(movie){
 				res.redirect('/profile');
@@ -152,7 +152,6 @@ app.post('/favorites', function(req,res){
 		}
 	});
 });
-
 
 app.listen(3000, function(){
 	console.log("Wassup?");
