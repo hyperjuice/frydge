@@ -55,11 +55,11 @@ app.get('/login', function(req,res){
 	});
 });
 
-app.get('/signup', function(req,res){
-	res.render("user/signup");
+app.get('/register', function(req,res){
+	res.render("user/register");
 });
 
-app.get('/register', function(req,res){
+app.get('/box', function(req,res){
 	req.currentUser().then(function(dbUser){
 		if (dbUser) {
 			db.FavoriteRecipe.findAll({where: {UserId: dbUser.id}})
