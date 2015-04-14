@@ -41,7 +41,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static('public'));
 
 app.get('/', function(req,res){
-	res.render("index", {title: "My title"});
+	res.render("index", {title: "what's in your frydge?"});
 });
 
 
@@ -156,5 +156,5 @@ app.post('/favorites', function(req,res){
 
 
 app.listen(3000, function(){
-	console.log("I'm listening");
+	console.log("Wassup?");
 });
