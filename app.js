@@ -92,7 +92,7 @@ app.post('/register', function(req, res) {
 	var email = req.body.email;
 	var password = req.body.password;
 
-	db.User.createSecure(email,password).then(function(user){
+	db.User.createSecure(email, password).then(function(user) {
 		res.redirect('/box');
 	});
 });
