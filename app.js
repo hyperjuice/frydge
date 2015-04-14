@@ -108,33 +108,18 @@ app.delete('/logout', function(req,res){
 
 app.get('/search',function(req,res){
 	var recipeSearch = req.query.q;
-
-	console.log("step1");
 	if (!recipeSearch) {
-
-		console.log("step2");
 		res.render("search", {recipes: [], noRecipes: true});
 	} else {
 
 		
 		var url = "http://api.yummly.com/v1/api/recipes?_app_id=3e775ebe&_app_key=e7c79fa0efc5e9338bf35e68bd761b42&q="+recipeSearch+"&allowedDiet[]=389^Ovo vegetarian&allowedAllergy[]=393^Gluten-Free&allowedAllergy[]=398^Seafood-Free&allowedAllergy[]=400^Soy-Free&allowedAllergy[]=392^Wheat-Free&maxTotalTimeInSeconds=1800";
-
-
-		
 		request(url, function(err, resp, body){
-
-			
 			if (!err && resp.statusCode === 200) {
 				var jsonData = JSON.parse(body);
-
-				
 				if (!jsonData.matches.length) {
-
-					console.log("step4");
 					res.render("search", {recipes: [], noRecipes: true});
 				}
-
-				console.log("step5");
 				res.render("search", {recipes: jsonData.matches, noRecipes: false});
 			}
 		});
