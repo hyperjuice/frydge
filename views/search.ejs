@@ -3,7 +3,6 @@
 <head>
 	<meta charset="UTF-8">
 	<title>search recipes</title>
-	<link rel="stylesheet" href="/stylesheets/style.css">
 		<!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
 </head>
@@ -21,8 +20,8 @@
 			<a href="/box">box</a>
 		</div>
 		<div>
-			<form class="myForm" method="GET" action="/search">
-				<input type="text" name="q3" placeholder="Search">
+			<form method="GET" action="/search">
+				<input type="text" name="q" placeholder="search">
 				<button>find!</button>
 			</form>
 		</div>
@@ -32,12 +31,10 @@
 			<% } %>
 		</div>
 		<% recipes.forEach(function(recipe){ %>
-			<div class="row">
-				<div class="col-xs-6 col-xs-offset-3">
-					<a href="/recipe?id=<%= recipe.yumID %>">
-						<%= recipe.Title %>
-					</a>
-				</div>
+			<div>
+				<a href="/recipe?id=<%= recipe.yumID %>">
+					<%= recipe.Title %>
+				</a>
 			</div>
 			<% }) %>
 		</div>

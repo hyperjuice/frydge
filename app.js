@@ -107,7 +107,7 @@ app.delete('/logout', function(req,res){
 
 
 app.get('/search',function(req,res){
-	var recipeSearch = req.query.lmk;
+	var recipeSearch = req.query.q;
 	if (!recipeSearch) {
 		res.render("search", {recipes: [], noRecipes: true});
 	} else {
@@ -116,10 +116,10 @@ app.get('/search',function(req,res){
 		request(url, function(err, resp, body){
 			if (!err && resp.statusCode === 200) {
 				var jsonData = JSON.parse(body);
-				if (!jsonData.Search) {
+				if (!jsonData.matches.length === 0) {
 					res.render("search", {recipes: [], noRecipes: true});
 				}
-				res.render("search", {recipes: jsonData.Search, noRecipes: false});
+				res.render("search", {recipes: jsonData.matches, noRecipes: false});
 			}
 		});
 	}
