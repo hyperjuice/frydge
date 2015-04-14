@@ -1,1 +1,35 @@
-box.ejs
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>my recipe box</title>
+	<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+
+</head>
+<body>
+	<div class="container">
+		<div>
+			<a href="/">home</a>
+			</br>
+			<a href="/register">register</a>
+			</br>
+			<a href="/search">search</a>
+			</br>	
+			<a href="/box">box</a>
+		</div>
+		<h1>Hi <%= ejsUser.email %></h1>
+		<form method="POST" action="/logout?_method=DELETE">
+			<button>Logout</button>
+		</form>
+
+		<ul>
+			<% yum.forEach(function(fav){ %>
+				<li>
+					imdbID: <%= fav.imdbID %>
+				</li>
+			<% }) %>
+		</ul>
+	</div>
+</body>
+</html>

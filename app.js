@@ -62,10 +62,10 @@ app.get('/signup', function(req,res){
 app.get('/register', function(req,res){
 	req.currentUser().then(function(dbUser){
 		if (dbUser) {
-			db.FavoriteMovie.findAll({where: {UserId: dbUser.id}})
-			  .then(function(movies){
-			  	console.log("\n\n\n\n\nHELLO", movies);
-				res.render('user/profile', {ejsUser: dbUser, idk: movies});
+			db.FavoriteRecipe.findAll({where: {UserId: dbUser.id}})
+			  .then(function(recipes){
+			  	console.log("\n\n\n\n\nHELLO", recipes);
+				res.render('user/box', {ejsUser: dbUser, yum: recipes});
 			});
 		} else {
 			res.redirect('/login');
@@ -91,12 +91,12 @@ app.post('/login', function(req,res){
 // GET /user -------> req.query.id
 // POST /user ------> req.body.id
 
-app.post('/signup', function(req,res){
+app.post('/register', function(req,res){
 	var email = req.body.email;
 	var password = req.body.password;
 	db.User.createSecure(email,password)
 	  .then(function(user){
-	  	res.redirect('/profile');
+	  	res.redirect('/box');
 	  });
 });
 
