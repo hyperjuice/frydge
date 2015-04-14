@@ -27,17 +27,16 @@
 		</div>
 		<div>
 			<% if (noRecipes) { %>
-			<div> No results </div>
+			<div> try again </div>
 			<% } %>
 		</div>
 		<% recipes.forEach(function(recipe){ %>
-			<div>
-				<a href="/recipe?id=<%= recipe.yumID %>">
-					<%= recipe.Title %>
-				</a>
-			</div>
-			<% }) %>
-		</div>
+		<div>
+			<a href="/recipes/<%= recipe.id %>">
+				<%= recipe.recipeName %>
+			</a>
+		</div>  
+		<% }) %>
 	</div>	
 </body>
 </html>
