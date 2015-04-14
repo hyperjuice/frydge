@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>S3arch movi3</title>
+	<title>search recipes</title>
 	<link rel="stylesheet" href="/stylesheets/style.css">
 		<!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
@@ -20,28 +20,27 @@
 			</br>	
 			<a href="/box">box</a>
 		</div>
-		<div class="row">
-			<div class="col-xs-6 col-xs-offset-3">
-				<form class="myForm" method="GET" action="/search">
-					<input type="text" name="q3" placeholder="Search">
-					<button>Click me</button>
-				</form>
-			</div>
+		<div>
+			<form class="myForm" method="GET" action="/search">
+				<input type="text" name="q3" placeholder="Search">
+				<button>find!</button>
+			</form>
 		</div>
-		<div class="row">
-			<% if (noMovies) { %>
-			<div class="col-xs-6 col-xs-offset-3"> No results </div>
+		<div>
+			<% if (noRecipes) { %>
+			<div> No results </div>
 			<% } %>
 		</div>
-		<% movies.forEach(function(movie){ %>
+		<% recipes.forEach(function(recipe){ %>
 			<div class="row">
 				<div class="col-xs-6 col-xs-offset-3">
-					<a class="movieLink" href="/movie?id=<%= movie.imdbID %>">
-						<%= movie.Title %>
+					<a href="/recipe?id=<%= recipe.yumID %>">
+						<%= recipe.Title %>
 					</a>
 				</div>
 			</div>
 			<% }) %>
 		</div>
+	</div>	
 </body>
 </html>

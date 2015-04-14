@@ -109,7 +109,7 @@ app.delete('/logout', function(req,res){
 app.get('/search',function(req,res){
 	var recipeSearch = req.query.lmk;
 	if (!recipeSearch) {
-		res.render("search", {recipes: [], noRecipies: true});
+		res.render("search", {recipes: [], noRecipes: true});
 	} else {
 		var url = "http://api.yummly.com/v1/api/recipes?_app_id=3e775ebe&_app_key=e7c79fa0efc5e9338bf35e68bd761b42&q="+recipeSearch+"&allowedDiet[]=389^Ovo vegetarian&allowedAllergy[]=393^Gluten-Free&allowedAllergy[]=398^Seafood-Free&allowedAllergy[]=400^Soy-Free&allowedAllergy[]=392^Wheat-Free&maxTotalTimeInSeconds=1800";
 
