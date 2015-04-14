@@ -10,5 +10,23 @@
     "pg-hstore": "^2.3.2",
     "request": "^2.55.0",
     "sequelize": "^2.0.5"
-  }
+  },
+  "name": "frydge",
+  "description": "/*",
+  "version": "1.0.0",
+  "main": "app.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hyperjuice/frydge.git"
+  },
+  "author": "Darrell Brian Cohn (@hyperjuice)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hyperjuice/frydge/issues"
+  },
+  "homepage": "https://github.com/hyperjuice/frydge"
 }
