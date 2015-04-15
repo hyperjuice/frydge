@@ -26,13 +26,18 @@
 		</form>
 		
 
-		<ul>
+		<table>
 			<% recipes.forEach(function(recipe){ %>
-				<li>
-					<a href="/recipes/<%= recipe.yummly_id %>"><%= recipe.recipe_name %></a>
-				</li>
+				<tr>
+					<td><a href="/recipes/<%= recipe.yummly_id %>"><%= recipe.recipe_name %></a></td>
+					<td>
+						<form action="/favorites/<%= recipe.id %>?_method=DELETE" method="POST">
+							<input type="submit" value="Delete">
+						</form>
+					</td>
+				</tr>
 			<% }) %>
-		</ul>
+		</table>
 	</div>
 </body>
 </html>

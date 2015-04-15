@@ -62,10 +62,14 @@ app.get('/register', function(req, res) {
 app.get('/box', function(req, res) {
 	req.currentUser().then(function(user) {
 		if (user) {
-			db.FavoriteRecipe.findAll({ include: db.User})
-				.then(function(recipes) {
-					res.render('user/box', { user: user, recipes: recipes });
-				});
+			// db.FavoriteRecipe.findAll({ include: db.User})
+			// 	.then(function(recipes) {
+			// 		res.render('user/box', { user: user, recipes: recipes });
+			// 	});
+
+			user.getFavoriteRecipes().then(function(recipes) {
+				res.render('user/box', { user: user, recipes: recipes });
+			});
 		} else {
 			res.redirect('/login');
 		}
@@ -123,8 +127,8 @@ app.get('/search',function(req, res) {
 	}
 });
 
-app.get('/recipes/:id', function(req, res) {
-	var yumID = req.params.id;
+app.get('/recipes/:yummlyId', function(req, res) {
+	var yumID = req.params.yummlyId;
 	var url = 'http://api.yummly.com/v1/api/recipe/' + yumID + '?_app_id=3e775ebe&_app_key=' + env.MY_API_KEY;
 
 	request(url, function(err, resp, body){
@@ -143,6 +147,16 @@ app.post('/box', function(req, res) {
 		.then(function(){
 			res.redirect("/box");
 		});
+});
+
+app.delete('/favorites/:id', function(req, res) {
+	if (req.session.userId) {
+		db.FavoriteRecipe.destroy({ where: { id: req.params.id } }).then(function() {
+			res.redirect('/box');
+		});
+	} else {
+		res.redirect('/login');
+	}
 });
 
 app.listen(process.env.PORT || 3000, function() {
