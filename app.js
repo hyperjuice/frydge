@@ -10,11 +10,9 @@ app.set("view engine", "ejs");
 
 // This defines req.session
 app.use(session({
-	secret: "I'm very very secret thing",
+	secret: "fluffy the cat",
 	resave: false,
-	save: {
-		uninitialize: true
-	}
+	saveUninitialized: true,
 }));
 
 app.use("/", function(req, res, next) {
