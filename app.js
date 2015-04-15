@@ -137,20 +137,25 @@ app.get('/recipes/:id', function(req, res) {
 	});
 });
 
-app.post('/favorites', function(req, res) {
-	var imdbID = req.body.imdbID;
-	var rating = req.body.rating;
+app.post('/box', function(req, res) {
+	var yumID = req.params.id;
+	var url = 'http://api.yummly.com/v1/api/recipe/' + yumID + '?_app_id=3e775ebe&_app_key=e7c79fa0efc5e9338bf35e68bd761b42';
+	if (dbUser){
+		
+	}
 
-	req.currentUser().then(function(dbUser) {
+	// var imdbID = req.body.imdbID;
+	// var rating = req.body.rating;
+	// req.currentUser().then(function(dbUser) {
 
-		if (dbUser) {
-			dbUser.addToFavs(db,imdbID,rating).then(function(movie) {
-				res.redirect('/box');
-			});
-		} else {
-			res.redirect('/login');
-		}
-	});
+	// 	if (dbUser) {
+	// 		dbUser.addToFavs(db,imdbID,rating).then(function(movie) {
+	// 			res.redirect('/box');
+	// 		});
+	// 	} else {
+	// 		res.redirect('/login');
+	// 	}
+	// });
 });
 
 app.listen(3000, function() {
