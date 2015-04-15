@@ -136,6 +136,7 @@ app.get('/recipes/:id', function(req, res) {
 	});
 });
 
+//profile page
 app.post('/box', function(req, res) {
 	var yumID = req.body.yumID;
 	var recipeName = req.body.recipeName;
@@ -143,7 +144,6 @@ app.post('/box', function(req, res) {
 		.then(function(){
 			res.redirect("/box");
 		});
-	
 });
 
 app.listen(process.env.PORT || 3000, function() {
