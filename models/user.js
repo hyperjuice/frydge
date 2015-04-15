@@ -24,9 +24,9 @@ module.exports = function (sequelize, DataTypes){
       checkPassword: function(password) {
         return bcrypt.compareSync(password, this.passwordDigest);
       },
-      addToFavs: function(db,imdbID,rating) {
-        return db.FavoriteMovie
-          .create({imdbID: imdbID, rating: rating, UserId: this.id});
+      addToFavs: function(db, yumID, recipe_name) {  // not sure about name
+        return db.FavoriteRecipe
+          .create({yumID: yumID, user_id: this.id, recipe_name: recipe_name });
       }
     },
     classMethods: {
@@ -45,7 +45,6 @@ module.exports = function (sequelize, DataTypes){
 
       },
       authenticate: function(email, password) {
-        // find a user in the DB
         return this.find({
           where: {
             email: email
@@ -64,11 +63,10 @@ module.exports = function (sequelize, DataTypes){
         });
       },
       associate: function(models) {
-        this.hasMany(models.FavoriteMovie);
-        // associations can be defined here
+        this.hasMany(models.FavoriteRecipe);
       }
 
-    } // close classMethods
-  }); // close define user
+    } 
+  }); 
   return User;
 }; // close User function

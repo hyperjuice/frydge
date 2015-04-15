@@ -1,13 +1,14 @@
 "use strict";
 module.exports = function(sequelize, DataTypes) {
+  
   var FavoriteRecipe = sequelize.define("FavoriteRecipe", {
     yummly_id: DataTypes.STRING,
     recipe_name: DataTypes.STRING,
-    user_id: DataTypes.INTEGER
+    UserId: DataTypes.INTEGER
   }, {
     classMethods: {
       associate: function(models) {
-        // associations can be defined here
+        this.belongsTo(models.User);
       }
     }
   });

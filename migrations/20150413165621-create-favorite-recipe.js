@@ -16,7 +16,7 @@ module.exports = {
       recipe_name: {
         type: DataTypes.STRING
       },
-      user_id: {
+      UserId: {
         type: DataTypes.INTEGER
       },
       createdAt: {

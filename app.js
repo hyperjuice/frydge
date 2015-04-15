@@ -64,7 +64,7 @@ app.get('/box', function(req, res) {
 	req.currentUser().then(function(dbUser){
 		
 		if (dbUser) {
-			db.FavoriteRecipe.findAll({ where: { UserId: dbUser.id } })
+			db.FavoriteRecipe.findAll({ include: db.User})
 				.then(function(recipes){
 					res.render('user/box', { ejsUser: dbUser, yum: recipes });
 				});
@@ -144,8 +144,8 @@ app.post('/favorites', function(req, res) {
 	req.currentUser().then(function(dbUser) {
 
 		if (dbUser) {
-			dbUser.addToFavs(db,imdbID,rating).then(function(movie){
-				res.redirect('/profile');
+			dbUser.addToFavs(db,imdbID,rating).then(function(movie) {
+				res.redirect('/box');
 			});
 		} else {
 			res.redirect('/login');
@@ -153,6 +153,6 @@ app.post('/favorites', function(req, res) {
 	});
 });
 
-app.listen(3000, function(){
+app.listen(3000, function() {
 	console.log("Wassup?");
 });
