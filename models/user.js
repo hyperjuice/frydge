@@ -24,9 +24,9 @@ module.exports = function (sequelize, DataTypes){
       checkPassword: function(password) {
         return bcrypt.compareSync(password, this.passwordDigest);
       },
-      addToFavs: function(db, yumID, recipe_name) {  // not sure about name
+      addToFavs: function(db, yumID, recipe_name) {
         return db.FavoriteRecipe
-          .create({yumID: yumID, user_id: this.id, recipe_name: recipe_name });
+          .create({yummly_id: yumID, UserId: this.id, recipe_name: recipe_name });
       }
     },
     classMethods: {

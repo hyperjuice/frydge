@@ -41,7 +41,9 @@
 			<div class="col-xs-12">
 				<form method="POST" action="/box">
 					<input type="text" style="display: none;"
-					       value="<%= recipe.yumID%>" name="yumID">
+					       value="<%= recipe.id%>" name="yumID">
+					<input type="text" style="display: none;"
+					       value="<%= recipe.name%>" name="recipeName">       
 					<button>add to box</button>
 				</form>
 			</div>
