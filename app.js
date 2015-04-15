@@ -60,12 +60,11 @@ app.get('/register', function(req, res) {
 });
 
 app.get('/box', function(req, res) {
-	req.currentUser().then(function(dbUser){
-		
-		if (dbUser) {
+	req.currentUser().then(function(user) {
+		if (user) {
 			db.FavoriteRecipe.findAll({ include: db.User})
-				.then(function(recipes){
-					res.render('user/box', { ejsUser: dbUser, yum: recipes });
+				.then(function(recipes) {
+					res.render('user/box', { user: user, recipes: recipes });
 				});
 		} else {
 			res.redirect('/login');

@@ -20,15 +20,16 @@
 			</br>	
 			<a href="/box">box</a>
 		</div>
-		<h1>Hi <%= ejsUser.email %></h1>
+		<h1>Hi <%= user.email %></h1>
 		<form method="POST" action="/logout?_method=DELETE">
 			<button>logout</button>
 		</form>
+		
 
 		<ul>
-			<% yum.forEach(function(fav){ %>
+			<% recipes.forEach(function(recipe){ %>
 				<li>
-					yumID: <%= fav.yumID %>
+					<a href="/recipes/<%= recipe.yummly_id %>"><%= recipe.recipe_name %></a>
 				</li>
 			<% }) %>
 		</ul>
