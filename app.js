@@ -109,7 +109,7 @@ app.get('/search',function(req, res) {
 	if (!q) {
 		res.render("search", { recipes: [], noRecipes: true });
 	} else {
-		var url = "http://api.yummly.com/v1/api/recipes?_app_id=3e775ebe&_app_key=e7c79fa0efc5e9338bf35e68bd761b42&q=" + q + "&allowedDiet[]=389^Ovo vegetarian&allowedAllergy[]=393^Gluten-Free&allowedAllergy[]=398^Seafood-Free&allowedAllergy[]=400^Soy-Free&allowedAllergy[]=392^Wheat-Free&maxTotalTimeInSeconds=1800";
+		var url = "http://api.yummly.com/v1/api/recipes?_app_id=3e775ebe&_app_key=e7c79fa0efc5e9338bf35e68bd761b42&q=" + q + "&allowedDiet[]=389^Ovo vegetarian&allowedAllergy[]=393^Gluten-Free&allowedAllergy[]=398^Seafood-Free&allowedAllergy[]=400^Soy-Free&allowedAllergy[]=392^Wheat-Free&allowedAllergy[]=396^Dairy-Free&maxTotalTimeInSeconds=1800";
 
 		request(url, function(err, resp, body) {
 			if (!err && resp.statusCode === 200) {
@@ -137,26 +137,28 @@ app.get('/recipes/:id', function(req, res) {
 	});
 });
 
-app.post('/box', function(req, res) {
-	var yumID = req.params.id;
-	var url = 'http://api.yummly.com/v1/api/recipe/' + yumID + '?_app_id=3e775ebe&_app_key=e7c79fa0efc5e9338bf35e68bd761b42';
-	if (dbUser){
-		
-	}
+// app.post('/box', function(req, res) {
+// 	var yumID = req.params.id;
+// 	var url = 'http://api.yummly.com/v1/api/recipe/' + yumID + '?_app_id=3e775ebe&_app_key=e7c79fa0efc5e9338bf35e68bd761b42';
+// 	var name = 
 
-	// var imdbID = req.body.imdbID;
-	// var rating = req.body.rating;
-	// req.currentUser().then(function(dbUser) {
+// 	if (dbUser){
 
-	// 	if (dbUser) {
-	// 		dbUser.addToFavs(db,imdbID,rating).then(function(movie) {
-	// 			res.redirect('/box');
-	// 		});
-	// 	} else {
-	// 		res.redirect('/login');
-	// 	}
-	// });
-});
+// 	}
+
+// 	var imdbID = req.body.imdbID;
+// 	var rating = req.body.rating;
+// 	req.currentUser().then(function(dbUser) {
+
+// 		if (dbUser) {
+// 			dbUser.addToFavs(db,imdbID,rating).then(function(movie) {
+// 				res.redirect('/box');
+// 			});
+// 		} else {
+// 			res.redirect('/login');
+// 		}
+// 	});
+// });
 
 app.listen(3000, function() {
 	console.log("Wassup?");

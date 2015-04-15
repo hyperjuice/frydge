@@ -18,19 +18,28 @@
 			<a href="/search">search</a>
 			</br>	
 			<a href="/box">box</a>
-		</div>
-		<div class="row">
-			<div class="col-xs-6">Image: <%= recipe.images %> </div>
-			<div class="col-xs-6">Name: <%= recipe.name %> </div>
-			<div class="col-xs-6">Thanks: <%= recipe.attribution %> </div>
-			<div class="col-xs-6">Ingredients: <%= recipe.ingredientLines %> </div>
+		
+		<div>Name and source (click!): <a href="<%= recipe.source.sourceRecipeUrl %>" target="_blank"><%= recipe.name %> </a></div>
+		<div>Ingredients: <%= recipe.ingredientLines %></div>
 
-			<div class="col-xs-6">Source: <%= recipe.source %> </div>
-			<div class="col-xs-6">Time needed: <%= recipe.totalTime %> </div>
-		</div>
+		<!-- <div>
+			var array = <%= recipe.ingredientLines %>;
+			var each = function(array, callback) {
+			    for (var i = 0; i < array.length; i++) {
+			        callback(array[i]);
+			    }
+			    return array;
+			}
+
+			each(array, function(a) {
+				console.log(a); 
+			});   
+		</div> -->
+
+		<div>Time needed: <%= recipe.totalTime %> </div>
 		<div class="row">
 			<div class="col-xs-12">
-				<form method="POST" action="/favorites">
+				<form method="POST" action="/box">
 					<input type="text" style="display: none;"
 					       value="<%= recipe.yumID%>" name="yumID">
 					<button>add to box</button>
