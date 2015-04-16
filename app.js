@@ -149,7 +149,7 @@ app.delete('/favorites/:id', function(req, res) {
 	// Check that user is logged in
 	if (req.session.userId) {
 		// Destroy favorite with that id, making sure it actually belongs to current user
-		db.FavoriteRecipe.destroy({ where: { id: req.params.id, userId: req.session.userId } }).then(function() {
+		db.FavoriteRecipe.destroy({ where: { id: req.params.id, UserId: req.session.userId } }).then(function() {
 			res.redirect('/box');
 		});
 	} else {
