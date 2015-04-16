@@ -9,7 +9,49 @@
 <link rel="stylesheet" href="/stylesheets/style.css">
 </head>
 <body>
-	<div class="container">
+
+
+
+<!-- START NAVBAR -->	
+
+	<div class = "navbar navbar-default navbar-fixed-top">
+		<div class = "container">
+		
+	
+			<button class = "navbar-toggle" data-toggle = "collapse" data-target = ".navHeaderCollapse">		
+			
+				<span class = "icon-bar"></span>
+				<span class = "icon-bar"></span>
+				<span class = "icon-bar"></span>
+				<span class = "icon-bar"></span>
+			</button>
+	
+			<div class = "collapse navbar-collapse navHeaderCollapse">
+			
+				<ul class = "nav navbar-nav navbar-left">
+					
+					<li><a href="/">home</a></li>
+					<li><a href="/login">login</a></li>
+					<li class = "active"><a href = "#">register</a></li>
+					<li><a href="/search">search</a></li>
+					<li><a href="/box">box</a></li>
+					
+				</ul>
+			
+			</div>		
+	
+		</div>
+	</div>
+
+<!-- END NAVBAR -->
+
+
+
+
+
+
+
+	<!-- <div class="container">
 		<div>
 			<a href="/">home</a>
 			</br>
@@ -21,33 +63,34 @@
 			</br>	
 			<a href="/box">box</a>
 		</div>
-		<!-- <div>
+		<div>
 			<form method="POST" action="/register">
 				<input type="text" name="email" placeholder="email">
 				<input type="password" name="password" placeholder="password">
 				<button>register</button>
 			</form>
-		</div> -->
-	</div>		
+		</div>
+	</div>		 -->
 
 
+	<div class="row">
+		<div class="col-xs-6">
+			<div class="container">
 
-<div class="container">
+			      <form class="form-signin" method="POST" action="/register">
+			        <h2 class="form-signin-heading">Please register</h2>
+			        
+			        <label for="inputEmail" class="sr-only">Email address</label>
+			        <input type="email" id="inputEmail" class="form-control" name="email" placeholder="email address" required autofocus>
+			        
+			        <label for="inputPassword" class="sr-only">password</label>
+			        <input type="password" id="inputPassword" class="form-control" name="password" placeholder="password" required>
 
-      <form class="form-signin" method="POST" action="/register">
-        <h2 class="form-signin-heading">Please register</h2>
-        
-        <label for="inputEmail" class="sr-only">Email address</label>
-        <input type="email" id="inputEmail" class="form-control" name="email" placeholder="email address" required autofocus>
-        
-        <label for="inputPassword" class="sr-only">password</label>
-        <input type="password" id="inputPassword" class="form-control" name="password" placeholder="password" required>
-
-        <button class="btn btn-lg btn-primary btn-block" type="submit">register</button>
-      </form>
-
-    </div>
-
+			        <button class="btn btn-lg btn-primary btn-block" type="submit">register</button>
+			      </form>
+			</div>
+		</div>	
+	</div>
 
 
 
