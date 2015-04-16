@@ -21,13 +21,36 @@
 			</br>	
 			<a href="/box">box</a>
 		</div>
-		<div>
+		<!-- <div>
 			<form method="POST" action="/register">
 				<input type="text" name="email" placeholder="email">
 				<input type="password" name="password" placeholder="password">
 				<button>register</button>
 			</form>
-		</div>
+		</div> -->
 	</div>		
+
+
+
+<div class="container">
+
+      <form class="form-signin" method="POST" action="/register">
+        <h2 class="form-signin-heading">Please register</h2>
+        
+        <label for="inputEmail" class="sr-only">Email address</label>
+        <input type="email" id="inputEmail" class="form-control" name="email" placeholder="email address" required autofocus>
+        
+        <label for="inputPassword" class="sr-only">password</label>
+        <input type="password" id="inputPassword" class="form-control" name="password" placeholder="password" required>
+
+        <button class="btn btn-lg btn-primary btn-block" type="submit">register</button>
+      </form>
+
+    </div>
+
+
+
+
+
 </body>
 </html>
