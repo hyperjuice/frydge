@@ -62,11 +62,7 @@ app.get('/register', function(req, res) {
 app.get('/box', function(req, res) {
 	req.currentUser().then(function(user) {
 		if (user) {
-			// db.FavoriteRecipe.findAll({ include: db.User})
-			// 	.then(function(recipes) {
-			// 		res.render('user/box', { user: user, recipes: recipes });
-			// 	});
-
+			//'get' is Sequelize code
 			user.getFavoriteRecipes().then(function(recipes) {
 				res.render('user/box', { user: user, recipes: recipes });
 			});
