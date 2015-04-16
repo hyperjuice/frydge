@@ -4,9 +4,8 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>recipe</title>
-		<!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
-<link rel="stylesheet" href="/stylesheets/style.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+	<link rel="stylesheet" href="/stylesheets/style.css">
 </head>
 <body>
 	<div class="container">
@@ -24,20 +23,6 @@
 		<div>Name and source (click!): <a href="<%= recipe.source.sourceRecipeUrl %>" target="_blank"><%= recipe.name %> </a></div>
 		<div>Ingredients: <%= recipe.ingredientLines %></div>
 
-		<!-- <div>
-			var array = <%= recipe.ingredientLines %>;
-			var each = function(array, callback) {
-			    for (var i = 0; i < array.length; i++) {
-			        callback(array[i]);
-			    }
-			    return array;
-			}
-
-			each(array, function(a) {
-				console.log(a); 
-			});   
-		</div> -->
-
 		<div>Time needed: <%= recipe.totalTime %> </div>
 		<div class="row">
 			<div class="col-xs-12">
@@ -51,5 +36,20 @@
 			</div>
 		</div>
 	</div>
+
+	<!-- START FOOTER -->
+
+    <div class = "navbar navbar-default navbar-fixed-bottom">
+        <div class = "container">
+            <p class = "navbar-text pull-left">thanks <a href="http://www.yummly.com/" target="_blank">yummly</a></p>  
+            <a href = "https://twitter.com/hyperjuice" class = "navbar-btn btn-info btn pull-right" target="_blank">follow on twitter</a>
+        </div>
+    </div>
+
+<!-- END FOOTER --> 
+
+        <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+        <script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+        <script src="js/bootstrap.js"></script>
 </body>
 </html>	
