@@ -5,33 +5,43 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>search recipes</title>
 		<!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
-<link rel="stylesheet" href="/stylesheets/style.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+	<link rel="stylesheet" href="/stylesheets/style.css">
 </head>
 <body>
-	<div class="container">
-		<div>
-			<a href="/">home</a>
-			</br>
-			<a href="/login">login</a>
-			</br>
-			<a href="/register">register</a>
-			</br>
-			<a href="/search">search</a>
-			</br>	
-			<a href="/box">box</a>
+	
+	<!-- START NAVBAR -->	
+
+	<div class = "navbar navbar-default navbar-fixed-top">
+		<div class = "container">
+			<button class = "navbar-toggle" data-toggle = "collapse" data-target = ".navHeaderCollapse">		
+				<span class = "icon-bar"></span>
+				<span class = "icon-bar"></span>
+				<span class = "icon-bar"></span>
+				<span class = "icon-bar"></span>
+			</button>
+			<div class = "collapse navbar-collapse navHeaderCollapse">
+				<ul class = "nav navbar-nav navbar-left">
+					<li><a href="/">home</a></li>
+					<li><a href="/login">login</a></li>
+					<li><a href="/register">register</a></li>
+					<li class = "active"><a href = "#">search</a></li>
+					<li><a href="/box">box</a></li>
+				</ul>
+			</div>		
 		</div>
+	</div>
+
+<!-- END NAVBAR -->
+
+	</br></br>
+	<div class="container">
 		<div>
 			<form method="GET" action="/search">
 				<input type="text" name="q" placeholder="search">
 				<button>find!</button>
 			</form>
 		</div>
-<!-- 		<div>
-			<% if (noRecipes) { %>
-			<div> try again </div>
-			<% } %>
-		</div> -->
 		<% recipes.forEach(function(recipe){ %>
 		<div>
 			<a href="/recipes/<%= recipe.id %>">
@@ -41,7 +51,7 @@
 		<% }) %>
 	</div>
 
-	<!-- START FOOTER -->
+<!-- START FOOTER -->
 
     <div class = "navbar navbar-default navbar-fixed-bottom">
         <div class = "container">
