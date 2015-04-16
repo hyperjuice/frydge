@@ -3,18 +3,17 @@ body {
   padding-bottom: 40px;
   background-color: #eee;
 }
-
+.welcome{
+	background-color: #FFFF00
+}
 .form-signin {
-  max-width: 330px;
+  max-width: 380px;
   padding: 15px;
   margin: 0 auto;
 }
 .form-signin .form-signin-heading,
 .form-signin .checkbox {
   margin-bottom: 10px;
-}
-.form-signin .checkbox {
-  font-weight: normal;
 }
 .form-signin .form-control {
   position: relative;
@@ -38,13 +37,6 @@ body {
   border-top-left-radius: 0;
   border-top-right-radius: 0;
 }
-.jumbotron {
-    margin-top: 0px;
-    margin-bottom: 0px;
-    height: 245px;
-}
-    
-
 .col-centered {
     float: none;
     margin: 0 auto;

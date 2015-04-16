@@ -36,7 +36,6 @@
 	
 <!-- START NAVBAR -->	
 
-	</br></br>
 	<div class = "navbar navbar-default navbar-fixed-top">
 		<div class = "container">
 			<button class = "navbar-toggle" data-toggle = "collapse" data-target = ".navHeaderCollapse">		
@@ -58,24 +57,53 @@
 	</div>
 
 <!-- END NAVBAR -->
-
+	</br>
 	<div class="container">
-		<h1>Hi <%= user.email %></h1>
-		<form method="POST" action="/logout?_method=DELETE">
-			<button>logout</button>
-		</form>
-		<table>
-			<% recipes.forEach(function(recipe){ %>
-				<tr>
-					<td><a href="/recipes/<%= recipe.yummly_id %>"><%= recipe.recipe_name %></a></td>
-					<td>
-						<form action="/favorites/<%= recipe.id %>?_method=DELETE" method="POST">
-							<input type="submit" value="Delete">
-						</form>
-					</td>
-				</tr>
-			<% }) %>
-		</table>
+		<div class="row">
+            <div class="col-xs-5 col-sm-offset-1">
+				
+				<table>
+					<tr>
+						<td>
+							<h1>hi,</h1>
+				
+
+						</td>
+						<td>&nbsp;&nbsp;&nbsp;</td>
+						<td>
+							<h1 class="welcome"><%= user.email %></h1>
+
+						</td>
+						<td>&nbsp;&nbsp;&nbsp;</td>
+						<td>
+							</br><form method="POST" action="/logout?_method=DELETE">
+					<button class="btn btn-md btn-primary" type="submit">logout</button>
+				</form>
+
+						</td>
+					</tr>
+
+				</table>
+				<h3><b><u>Below are the recipes in your box:</u></b></h3>
+				
+				<table>
+					<% recipes.forEach(function(recipe){ %>
+						<tr>
+							<td><a href="/recipes/<%= recipe.yummly_id %>"><%= recipe.recipe_name %></a></td>
+							<td>&nbsp;&nbsp;</td>
+							<td>
+								<form action="/favorites/<%= recipe.id %>?_method=DELETE" method="POST">
+									<input class="btn btn-sm btn-danger" type="submit" value="Delete">
+								</form>
+							</td>
+						</tr>
+						<tr>
+							<td>&nbsp;</td>
+						</tr>
+					<% }) %>
+				</table>
+			</div>
+		</div>		
 	</div>
 
 <!-- START FOOTER -->
