@@ -5,22 +5,34 @@
 	<title>frydge</title>
 	<!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
-
+<link rel="stylesheet" href="/stylesheets/style.css">
 </head>
 <body>
 	<div class="container">
-		<div>
-			<a href="/">home</a>
-			</br>
-			<a href="/login">login</a>
-			</br>
-			<a href="/register">register</a>
-			</br>
-			<a href="/search">search</a>
-			</br>	
-			<a href="/box">box</a>
+		<div class="row">
+			<div class="col-xs-6">
+				<a href="/">home</a>
+				</br>
+				<a href="/login">login</a>
+				</br>
+				<a href="/register">register</a>
+				</br>
+				<a href="/search">search</a>
+				</br>	
+				<a href="/box">box</a>
+			</div>
 		</div>
-		<h1><%= title %></h1>
+		<div class="row">
+			<div class="col-xs-6">
+				<h1><%= h1 %></h1>
+				<h3><%= h3 %></h3>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-6">
+				<img src="/assets/frydge_main.png" alt="frydge!">
+			</div>
+		</div>
 	</div>
 </body>
 </html>
