@@ -16,6 +16,9 @@
   "name": "frydge",
   "description": "/*",
   "version": "1.0.0",
+  "engines": {
+    "node": "0.12.2"
+    },
   "main": "app.js",
   "devDependencies": {},
   "scripts": {
