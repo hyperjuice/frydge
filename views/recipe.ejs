@@ -60,10 +60,18 @@
 
 	</br></br>
 	<div class="container">
-		<div>Name and source (click!): <a href="<%= recipe.source.sourceRecipeUrl %>" target="_blank"><%= recipe.name %> </a></div>
-		<div>Ingredients: <%= recipe.ingredientLines %></div>
+		<div><h4>Name and link:</h4> <a href="<%= recipe.source.sourceRecipeUrl %>" target="_blank"><%= recipe.name %> </a></div>
+		<div>
+			<h4>Ingredients:</h4>
+			<ul>
+				<% recipe.ingredientLines.forEach(function(ingredientLine) { %>
+					<li><%= ingredientLine %></li>
+				<% }); %>
+			</ul>
+			<%= recipe.ingredientLines %>
+		</div>
 
-		<div>Time needed: <%= recipe.totalTime %> </div>
+		<div><h4>Prep time:</h4> <%= recipe.totalTime %> </div>
 		<div class="row">
 			<div class="col-xs-12">
 				<form method="POST" action="/box">

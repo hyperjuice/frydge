@@ -71,6 +71,13 @@
 					<button class="btn btn-md btn-primary" type="submit">find!</button> results will appear below
 				</form>
 				<p></p>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-6 col-sm-offset-1">
 				<% recipes.forEach(function(recipe){ %>
 				- <a href="/recipes/<%= recipe.id %>">
 				<%= recipe.recipeName %>
