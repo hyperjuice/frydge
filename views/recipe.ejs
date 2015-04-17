@@ -60,19 +60,22 @@
 
 	</br></br>
 	<div class="container">
-		<div><h4>Name and link:</h4> <a href="<%= recipe.source.sourceRecipeUrl %>" target="_blank"><%= recipe.name %> </a></div>
-		<div>
-			<h4>Ingredients:</h4>
-			<ul>
-				<% recipe.ingredientLines.forEach(function(ingredientLine) { %>
-					<li><%= ingredientLine %></li>
-				<% }); %>
-			</ul>
-		</div>
-
-		<div><h4>Prep time:</h4> <%= recipe.totalTime %> </div>
 		<div class="row">
-			<div class="col-xs-12">
+			<div class="col-xs-6 col-sm-offset-1">
+				<div><h4>Name and link:</h4> <a href="<%= recipe.source.sourceRecipeUrl %>" target="_blank"><%= recipe.name %> </a></div>
+				<div>
+					<h4>Ingredients:</h4>
+					<ul>
+						<% recipe.ingredientLines.forEach(function(ingredientLine) { %>
+							<li><%= ingredientLine %></li>
+						<% }); %>
+					</ul>
+				</div>
+				<div><h4>Prep time:</h4> <%= recipe.totalTime %> </div>
+			</div>
+		</div>	
+		<div class="row">
+			<div class="col-xs-12 col-sm-offset-1">
 				<form method="POST" action="/box">
 					<input type="text" style="display: none;"
 					       value="<%= recipe.id%>" name="yumID">
