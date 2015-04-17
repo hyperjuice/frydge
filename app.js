@@ -40,7 +40,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static('public'));
 
 app.get('/', function(req, res) {
-	res.render("index", { h1: "frydge.com", h3: "what's in your frydge?" });
+	res.render("index", { h1: "frydge: what's in it?" });
 });
 
 app.get('/login', function(req, res) {
