@@ -9,9 +9,8 @@ var env = process.env;
 
 app.set("view engine", "ejs");	
 
-// This defines req.session
 app.use(session({
-	secret: "fluffy the cat",
+	secret: env.MY_SESSION_SECRET,
 	resave: false,
 	saveUninitialized: true,
 }));
@@ -25,7 +24,7 @@ app.use("/", function(req, res, next) {
 		         .then(function(dbUser) {
 		         	req.user = dbUser;
 		         	return dbUser;
-		         });
+		        });
 	};
 	req.logout = function() {
 		req.session.userId = null;
@@ -44,7 +43,6 @@ app.get('/', function(req, res) {
 	res.render("index", { h1: "frydge.com", h3: "what's in your frydge?" });
 });
 
-
 app.get('/login', function(req, res) {
 	req.currentUser().then(function(user) {
 		if (user) {
@@ -62,7 +60,6 @@ app.get('/register', function(req, res) {
 app.get('/box', function(req, res) {
 	req.currentUser().then(function(user) {
 		if (user) {
-			//'get' is Sequelize code
 			user.getFavoriteRecipes().then(function(recipes) {
 				res.render('user/box', { user: user, recipes: recipes });
 			});
