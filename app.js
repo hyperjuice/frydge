@@ -118,6 +118,8 @@ app.get('/search',function(req, res) {
 				}
 
 				res.render("search", { recipes: results.matches, noRecipes: false });
+			} else {
+				res.send('Something went wrong with Yummly.');
 			}
 		});
 	}
