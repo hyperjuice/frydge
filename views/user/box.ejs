@@ -57,35 +57,30 @@
 	</div>
 
 <!-- END NAVBAR -->
+
 	</br>
 	<div class="container">
 		<div class="row">
             <div class="col-xs-5 col-sm-offset-1">
-				
 				<table>
 					<tr>
 						<td>
 							<h1>hi,</h1>
-				
-
 						</td>
 						<td>&nbsp;&nbsp;&nbsp;</td>
 						<td>
 							<h1 class="welcome"><%= user.email %></h1>
-
 						</td>
 						<td>&nbsp;&nbsp;&nbsp;</td>
 						<td>
-							</br><form method="POST" action="/logout?_method=DELETE">
-					<button class="btn btn-md btn-primary" type="submit">logout</button>
-				</form>
-
+							</br>
+							<form method="POST" action="/logout?_method=DELETE">
+							<button class="btn btn-md btn-primary" type="submit">logout</button>
+							</form>
 						</td>
 					</tr>
-
 				</table>
 				<h3><b><u>Below are the recipes in your box:</u></b></h3>
-				
 				<table>
 					<% recipes.forEach(function(recipe){ %>
 						<tr>

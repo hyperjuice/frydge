@@ -3,8 +3,8 @@ body {
   padding-bottom: 40px;
   background-color: #eee;
 }
-.welcome{
-	background-color: #FFFF00
+.welcome {
+	background-color: #FFFF00;
 }
 .form-signin {
   max-width: 380px;
@@ -41,9 +41,7 @@ body {
     float: none;
     margin: 0 auto;
 }
-
-.navbar-brand
-{
+.navbar-brand {
     position: absolute;
     width: 100%;
     left: 0;

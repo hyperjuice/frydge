@@ -45,6 +45,7 @@ app.get('/', function(req, res) {
 
 app.get('/login', function(req, res) {
 	req.currentUser().then(function(user) {
+		
 		if (user) {
 			res.redirect('/box');
 		} else {
@@ -59,6 +60,7 @@ app.get('/register', function(req, res) {
 
 app.get('/box', function(req, res) {
 	req.currentUser().then(function(user) {
+
 		if (user) {
 			user.getFavoriteRecipes().then(function(recipes) {
 				res.render('user/box', { user: user, recipes: recipes });
@@ -86,7 +88,6 @@ app.post('/login', function(req, res) {
 app.post('/register', function(req, res) {
 	var email = req.body.email;
 	var password = req.body.password;
-
 	db.User.createSecure(email, password).then(function(user) {
 		res.redirect('/box');
 	});
@@ -97,7 +98,6 @@ app.delete('/logout', function(req, res) {
 	res.redirect('/login');
 });
 
-
 app.get('/search',function(req, res) {
 	var q = req.query.q;
 
@@ -107,13 +107,12 @@ app.get('/search',function(req, res) {
 		var url = "http://api.yummly.com/v1/api/recipes?_app_id=3e775ebe&_app_key=" + env.MY_API_KEY + "&q=" + q + "&allowedDiet[]=389^Ovo vegetarian&allowedAllergy[]=393^Gluten-Free&allowedAllergy[]=398^Seafood-Free&allowedAllergy[]=400^Soy-Free&allowedAllergy[]=392^Wheat-Free&allowedAllergy[]=396^Dairy-Free&maxTotalTimeInSeconds=1800";
 
 		request(url, function(err, resp, body) {
+
 			if (!err && resp.statusCode === 200) {
 				var results = JSON.parse(body);
-
 				if (!results.matches.length) {
 					res.render("search", { recipes: [], noRecipes: true });
 				}
-
 				res.render("search", { recipes: results.matches, noRecipes: false });
 			} else {
 				res.send('Something went wrong with Yummly.');
@@ -125,7 +124,6 @@ app.get('/search',function(req, res) {
 app.get('/recipes/:yummlyId', function(req, res) {
 	var yumID = req.params.yummlyId;
 	var url = 'http://api.yummly.com/v1/api/recipe/' + yumID + '?_app_id=3e775ebe&_app_key=' + env.MY_API_KEY;
-
 	request(url, function(err, resp, body){
 		if (!err && resp.statusCode === 200) {
 			var recipe = JSON.parse(body);
@@ -139,7 +137,7 @@ app.post('/box', function(req, res) {
 	var yumID = req.body.yumID;
 	var recipeName = req.body.recipeName;
 	db.FavoriteRecipe.create({yummly_id: yumID, recipe_name: recipeName, UserId: req.session.userId})
-		.then(function(){
+		.then(function() {
 			res.redirect("/box");
 		});
 });
