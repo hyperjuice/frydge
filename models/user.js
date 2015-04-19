@@ -18,8 +18,8 @@ module.exports = function (sequelize, DataTypes){
       }
     }
   },
-
   {
+    // 'this' refers to the instance of the user in question
     instanceMethods: {
       checkPassword: function(password) {
         return bcrypt.compareSync(password, this.passwordDigest);
@@ -42,7 +42,6 @@ module.exports = function (sequelize, DataTypes){
           email: email,
           passwordDigest: this.encryptPassword(password)
         });
-
       },
       authenticate: function(email, password) {
         return this.find({
@@ -65,8 +64,7 @@ module.exports = function (sequelize, DataTypes){
       associate: function(models) {
         this.hasMany(models.FavoriteRecipe);
       }
-
     } 
   }); 
   return User;
-}; // close User function
+}; 

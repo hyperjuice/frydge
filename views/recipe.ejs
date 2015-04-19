@@ -62,20 +62,28 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-xs-6 col-sm-offset-1">
+
+				<!-- START INDIVIDUAL RECIPE DISPLAY  -->
 				<div><h4>Name and link:</h4> <a href="<%= recipe.source.sourceRecipeUrl %>" target="_blank"><%= recipe.name %> </a></div>
 				<div>
 					<h4>Ingredients:</h4>
 					<ul>
+
+						<!-- Put each ingredient on a new line -->
 						<% recipe.ingredientLines.forEach(function(ingredientLine) { %>
 							<li><%= ingredientLine %></li>
 						<% }); %>
 					</ul>
 				</div>
 				<div><h4>Prep time:</h4> <%= recipe.totalTime %> </div>
+				<!-- END INDIVIDUAL RECIPE DISPLAY --> 
+
 			</div>
 		</div>	
 		<div class="row">
 			<div class="col-xs-12 col-sm-offset-1">
+
+				<!-- Enable user to add recipe to box (profile) page. Note that this form is hidden. -->
 				<form method="POST" action="/box">
 					<input type="text" style="display: none;"
 					       value="<%= recipe.id%>" name="yumID">

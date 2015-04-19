@@ -9,12 +9,14 @@ var env = process.env;
 
 app.set("view engine", "ejs");	
 
+// Secure the session secret
 app.use(session({
 	secret: env.MY_SESSION_SECRET,
 	resave: false,
 	saveUninitialized: true,
 }));
 
+// Deal with authentication
 app.use("/", function(req, res, next) {
 	req.login = function(user) {
 		req.session.userId = user.id;
@@ -33,19 +35,26 @@ app.use("/", function(req, res, next) {
 	next();
 });
 
+// Enable use of HTTP verbs other than POST and GET
 app.use(methodOverride("_method"));
 
 app.use(bodyParser.urlencoded({ extended: true }));
 
+// Allow access to files stored in the public folder
 app.use(express.static('public'));
 
+// Render the homepage for the app. See index.ejs
 app.get('/', function(req, res) {
 	res.render("index", { h1: "frydge: what's in it?" });
 });
 
+// Render the login page when the request is sent to the server for 'login'. See login.ejs
 app.get('/login', function(req, res) {
 	req.currentUser().then(function(user) {
 		
+		// If a user is already logged in (user), redirect user to the box (profile) page.
+		// If not, render the login page. This makes use of the code in lines 19-35 above
+		// Note that this is 'res' and not 'req'.
 		if (user) {
 			res.redirect('/box');
 		} else {
@@ -54,10 +63,12 @@ app.get('/login', function(req, res) {
 	});
 });
 
+// Render the register page. See register.ejs
 app.get('/register', function(req, res) {
 	res.render("user/register");
 });
 
+// Render the box (profile) page. See box.ejs
 app.get('/box', function(req, res) {
 	req.currentUser().then(function(user) {
 
@@ -71,6 +82,7 @@ app.get('/box', function(req, res) {
 	});
 });
 
+// Authenticate user
 app.post('/login', function(req, res) {
 	var email = req.body.email;
 	var password = req.body.password;
@@ -85,6 +97,7 @@ app.post('/login', function(req, res) {
 	}); 
 });
 
+// Create a new user
 app.post('/register', function(req, res) {
 	var email = req.body.email;
 	var password = req.body.password;
@@ -93,11 +106,15 @@ app.post('/register', function(req, res) {
 	});
 });
 
+// Allow user to log out
 app.delete('/logout', function(req, res) {
 	req.logout();
 	res.redirect('/login');
 });
 
+// Render the search page. See search.ejs. The Yummly API is called here.
+// If there is an error on Yummly's side, this route handles that too.
+// Recipe response restrictions are defined here.
 app.get('/search',function(req, res) {
 	var q = req.query.q;
 
@@ -121,6 +138,7 @@ app.get('/search',function(req, res) {
 	}
 });
 
+// Render an individual recipe page. See recipe.ejs. The Yummly API is called here.
 app.get('/recipes/:yummlyId', function(req, res) {
 	var yumID = req.params.yummlyId;
 	var url = 'http://api.yummly.com/v1/api/recipe/' + yumID + '?_app_id=3e775ebe&_app_key=' + env.MY_API_KEY;
@@ -132,7 +150,7 @@ app.get('/recipes/:yummlyId', function(req, res) {
 	});
 });
 
-//profile page
+//Enable additions to the box (profile) page
 app.post('/box', function(req, res) {
 	var yumID = req.body.yumID;
 	var recipeName = req.body.recipeName;
@@ -142,6 +160,7 @@ app.post('/box', function(req, res) {
 		});
 });
 
+// Enable user to delete recipes from the box (profile) page
 app.delete('/favorites/:id', function(req, res) {
 	// Check that user is logged in
 	if (req.session.userId) {
@@ -154,6 +173,7 @@ app.delete('/favorites/:id', function(req, res) {
 	}
 });
 
+// Allow Heroku to function, or localhost
 app.listen(process.env.PORT || 3000, function() {
 	console.log("Wassup?");
 });

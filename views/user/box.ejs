@@ -74,6 +74,8 @@
 						<td>&nbsp;&nbsp;&nbsp;</td>
 						<td>
 							</br>
+
+							<!-- Add method override -->
 							<form method="POST" action="/logout?_method=DELETE">
 							<button class="btn btn-md btn-primary" type="submit">logout</button>
 							</form>
@@ -84,9 +86,13 @@
 				<table>
 					<% recipes.forEach(function(recipe){ %>
 						<tr>
+
+							<!-- Make the recipe names clickable -->
 							<td><a href="/recipes/<%= recipe.yummly_id %>"><%= recipe.recipe_name %></a></td>
 							<td>&nbsp;&nbsp;</td>
 							<td>
+
+								<!-- Enable user to delete recipes -->
 								<form action="/favorites/<%= recipe.id %>?_method=DELETE" method="POST">
 									<input class="btn btn-sm btn-danger" type="submit" value="Delete">
 								</form>
